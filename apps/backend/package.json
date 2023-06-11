@@ -13,6 +13,7 @@
     "db:migrate": "npx knex migrate:latest",
     "docker:db:migrate": "docker compose run backend yarn db:migrate",
     "rebuild:be": "docker compose build backend && docker compose rm --stop backend && docker compose up -d backend",
+    "seed:dev": "docker compose run backend yarn ts-node scripts/seed/dev.ts",
     "start": "node dist/index.js",
     "start:docker": "yarn build && node --inspect=0.0.0.0 dist/index.js"
   },
