@@ -1,6 +1,6 @@
 # Turbo Monorepo for Nodejs and React full stack app
 
-**Hi 🖐**this is full stack app version 2.0, check out the previous repo 👉 [Form Hub](https://turbo-monorepo.vercel.app/), which used docker to run the frontend and backend in two separate repo. This repo is using [Turborepo](https://turborepo.org/) to run the frontend and backend in one repo. The docker setup is still there, but restructured the whole app to use turborepo.
+**Hi 🖐**this is full stack app version 2.0, check out the previous repo 👉 [Form Hub](https://github.com/yanliu1111/docker-fullstackapp-react-nodejs-postgres), which used docker to run the frontend and backend in two separate repo. This repo is using [Turborepo](https://turbo-monorepo.vercel.app/) to run the frontend and backend in one repo. The docker setup is still there, but restructured the whole app to use turborepo.
 
 Fun fact, turborepo is created by the same person who created [Nextjs](https://nextjs.org/).
 
