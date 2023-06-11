@@ -71,3 +71,10 @@ Learn more about the power of Turborepo:
 - [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
 - [Configuration Options](https://turborepo.org/docs/reference/configuration)
 - [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
+
+## Learning Notes:
+1. When you move the backend and frontend to monorepo, the first two things: 1 delete git root and node_modules, 2 change the package name in package.json.
+2. Turbo setting for frontend, we only want to build and run the things we required for frontend.
+```json
+    "build": "turbo run build --filter=frontend",
+    "dev": "turbo run dev --filter=frontend --parallel",
