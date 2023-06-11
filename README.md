@@ -1,4 +1,36 @@
-# Turborepo starter
+# Turbo Monorepo for Nodejs and React full stack app
+
+**Hi 🖐**this is full stack app version 2.0, check out the previous repo 👉 [Form Hub](https://turbo-monorepo.vercel.app/), which used docker to run the frontend and backend in two separate repo. This repo is using [Turborepo](https://turborepo.org/) to run the frontend and backend in one repo. The docker setup is still there, but restructured the whole app to use turborepo.
+
+Fun fact, turborepo is created by the same person who created [Nextjs](https://nextjs.org/).
+
+## 📎 Run the app
+
+Install the required dependencies with `yarn install` in the `root` folder, `frondend` folder and `backend` folder.
+
+Go to the root folder, run `yarn dev` and `docker-compose up` to start the app.
+
+## 📕 Learning Notes:
+
+1. When you move the backend and frontend to monorepo, the first two things: 1 delete git root and node_modules, 2 change the package name in package.json.
+2. Turbo setting for frontend, we only want to build and run the things we required for frontend.
+
+```json
+    "build": "turbo run build --filter=frontend",
+    "dev": "turbo run dev --filter=frontend --parallel",
+```
+
+## ❓ Issues：
+
+There is alter in Github "Your repository has dependencies with security vulnerabilities." I think it is because of the turborepo, I will continue to troubleshoot this issues. 👩‍🔧
+
+💖 Hope this repo can help you to understand how to use turborepo to build a full stack app.
+
+## 📚 Resources:
+
+**The following is from the original Turborepo introduction**
+
+## Turborepo starter
 
 This is an official Yarn v1 starter turborepo.
 
@@ -71,10 +103,3 @@ Learn more about the power of Turborepo:
 - [Scoped Tasks](https://turborepo.org/docs/core-concepts/scopes)
 - [Configuration Options](https://turborepo.org/docs/reference/configuration)
 - [CLI Usage](https://turborepo.org/docs/reference/command-line-reference)
-
-## Learning Notes:
-1. When you move the backend and frontend to monorepo, the first two things: 1 delete git root and node_modules, 2 change the package name in package.json.
-2. Turbo setting for frontend, we only want to build and run the things we required for frontend.
-```json
-    "build": "turbo run build --filter=frontend",
-    "dev": "turbo run dev --filter=frontend --parallel",
