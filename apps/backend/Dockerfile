@@ -25,7 +25,7 @@ RUN yarn turbo run build --filter=backend...
 FROM node:lts AS runner
 WORKDIR /app
 
-# # Don't run production as root
+# Don't run production as root
 # RUN addgroup --system --gid 1001 expressjs
 # RUN adduser --system --uid 1001 expressjs
 # USER expressjs
