@@ -20,6 +20,18 @@ Go to the root folder, run `yarn dev` and `docker-compose up` to start the app.
     "dev": "turbo run dev --filter=frontend --parallel",
 ```
 
+## 📝 Summary for app stucture
+
+Very exciting, this monorepo full stack app is working with many new features, I would like to summarize their functions for this app and build whole app structure for better understanding.
+
+<img 
+    style="display: block; 
+           margin-left: auto;
+           margin-right: auto;"
+    src="roadmap.jpg" 
+    alt="roadmap">
+</img> <br>
+
 ## ❓ Issues：
 
 There is alter in Github "Your repository has dependencies with security vulnerabilities." I think it is because of the turborepo, I will continue to troubleshoot this issues. 👩‍🔧
