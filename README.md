@@ -36,7 +36,7 @@ Very exciting, this monorepo full stack app is working with many new features, I
 
 There is alter in Github "Your repository has dependencies with security vulnerabilities." I think it is because of the turborepo, I will continue to troubleshoot this issues. 👩‍🔧
 
-Update: the dependencies issues is fixed, have fun working with 👩‍🔧
+Update: the dependencies issues is fixed, have fun dependabot[bot] helped me update everything antomatically. GitHub is an amazing playground 🚀
 
 💖 Hope this repo can help you to understand how to use turborepo to build a full stack app.
 
