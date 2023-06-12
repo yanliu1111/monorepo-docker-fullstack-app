@@ -1,31 +1,37 @@
-import React, { useState, useEffect, useMemo } from "react";
+import React, { useState, useEffect, useMemo, ChangeEvent } from "react";
 
+// Generates a single row of the Fibonacci sequence based on the previous row
 function getFibForRow(row: number[]): number[] {
-  if (!row || !row.length) return [1];
+  if (!row || !row.length) return [1]; // If there is no previous row, return the first row of the sequence
   return row.flatMap((n, i, list) => {
-    const lastNumber = list[i - 1] || 0;
+    const lastNumber = list[i - 1] || 0; // Get the last number from the previous row, list is the previous row, i is the index of the current number
     const currentNumber = n;
-    const isFinalNumber = i === list.length - 1;
-    const next = lastNumber + currentNumber;
-    if (isFinalNumber) return [next, 1];
+    const isFinalNumber = i === list.length - 1; // Check if this is the last number in the previous row
+    const next = lastNumber + currentNumber; // Add the last number from the previous row to the current number
+    if (isFinalNumber) return [next, 1]; // If this is the last number in the previous row, return the next number and 1
     return [next];
   });
 }
-//number[][] is a 2d array
+// Generates a 2D array representing the Fibonacci sequence up to the given number of rows
 function getFib(n: number = 4): number[][] {
   return Array.from({ length: n }).reduce<number[][]>((acc, _current) => {
-    const lastRow = acc[acc.length - 1] || [];
-    return [...acc, getFibForRow(lastRow)];
+    const lastRow = acc[acc.length - 1] || []; // Get the last row from the accumulated array
+    return [...acc, getFibForRow(lastRow)]; // Generate the next row and add it to the accumulated array.
   }, []);
 }
-
+// Shows single row of the sequence.
 const FibonacciRow = ({ row }: { row: number[] }): JSX.Element => {
   return (
-    <div style={{ display: "flex", flexDirection: "row" }}>
+    <div style={{ display: "flex", flexDirection: "row", flexWrap: "wrap" }}>
       {row.map((item: number, index: number) => (
         <div
           key={index}
-          style={{ height: "2rem", width: "2.5rem", textAlign: "center" }}
+          style={{
+            height: "2rem",
+            width: "2.5rem",
+            textAlign: "center",
+            marginBottom: "0.5rem",
+          }}
         >
           {item}
         </div>
@@ -35,17 +41,12 @@ const FibonacciRow = ({ row }: { row: number[] }): JSX.Element => {
 };
 
 // Sentence showing the largest number of the sequence.
-// const biggest = fib.reduce((biggestOfAll, row) => {
-//     const biggestOfRow = Math.max(...row);
-//     return Math.max(biggestOfAll, biggestOfRow);
-//   }, 0);
 const BiggestNacc = ({ fib }: { fib: number[][] }): JSX.Element => {
   const biggest = fib.reduce((biggestOfAll, row) => {
-    const biggestOfRow = row.reduce((biggest, number) => {
-      return number > biggest ? number : biggest;
-    }, 0);
-    return biggestOfAll > biggestOfRow ? biggestOfAll : biggestOfRow;
+    const biggestOfRow = Math.max(...row);
+    return Math.max(biggestOfAll, biggestOfRow);
   }, 0);
+
   const rowCount = fib.length;
   return (
     <div style={{ marginBottom: "1rem" }}>
@@ -56,18 +57,20 @@ const BiggestNacc = ({ fib }: { fib: number[][] }): JSX.Element => {
 };
 
 const FibonacciVisualizer = (): JSX.Element => {
-  const [rowCountInput, setRowCountInput] = useState("10");
-  const [validRowCount, setValidRowCount] = useState(() =>
-    parseInt(rowCountInput, 10)
-  );
+  const [rowCountInput, setRowCountInput] = useState("");
+  const [validRowCount, setValidRowCount] = useState(4);
 
   useEffect(() => {
     const inputNumber = parseInt(rowCountInput, 10);
-    if (inputNumber > 0) {
-      // Set valid row count
+    if (!isNaN(inputNumber) && inputNumber > 0) {
       setValidRowCount(inputNumber);
     }
   }, [rowCountInput]);
+
+  const handleRowCountChange = (e: ChangeEvent<HTMLInputElement>) => {
+    setRowCountInput(e.currentTarget.value);
+  };
+
   const fib = useMemo(() => getFib(validRowCount), [validRowCount]);
   return (
     <div
@@ -77,8 +80,10 @@ const FibonacciVisualizer = (): JSX.Element => {
         How many rows of Fibonacci would you like to see?{" "}
         <input
           value={rowCountInput}
-          onChange={(e) => setRowCountInput(e.currentTarget.value)}
+          onChange={handleRowCountChange}
           name="fib"
+          type="number"
+          min="1"
         />
       </label>
       <BiggestNacc fib={fib} />
@@ -89,12 +94,10 @@ const FibonacciVisualizer = (): JSX.Element => {
   );
 };
 
-const Prymid_r = () => {
-  return (
-    <div>
-      <FibonacciVisualizer />
-    </div>
-  );
-};
+const Prymid_r = (): JSX.Element => (
+  <div>
+    <FibonacciVisualizer />
+  </div>
+);
 
 export default Prymid_r;
